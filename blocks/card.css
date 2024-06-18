@@ -1,13 +1,39 @@
 .card {
+  box-sizing: border-box;
+}
+
+.card__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-gap: 20px 18px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 568px) {
+  .card__list {
+    padding: 15px 0 18px;
+  }
 }
 
 .card__image {
+  width: 282px;
+  height: 282px;
 }
 
 .card__description {
 }
 
 .card__title {
+  max-width: 220px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
 }
 
 .card__like-button {
