@@ -62,5 +62,9 @@
   border: none;
 }
 
+.card__like-button:hover {
+  opacity: 50%;
+}
+
 .button {
 }
