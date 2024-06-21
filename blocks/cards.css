@@ -1,0 +1,25 @@
+.cards {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  margin-top: 51px;
+}
+
+.cards__list {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-gap: 20px 17px;
+  list-style-type: none;
+  margin: auto;
+  padding: 0;
+  max-width: 880px;
+}
+
+@media screen and (max-width: 621px) {
+  .cards {
+    margin-top: 36px;
+  }
+
+  .cards__list {
+    margin: 0;
+  }
+}
