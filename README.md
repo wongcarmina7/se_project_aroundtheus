@@ -16,8 +16,8 @@ This project is a way of displaying images of various travel destinations across
 
 **Github**
 
-- [Link to the project on Github] (https://github.com/wongcarmina7/se_project_aroundtheus)
+- [Link to the project on Github] (https://wongcarmina7.github.io/se_project_aroundtheus)
 
 **Video Presentation**
 
-- [Link to the video on Google Drive] (https://drive.google.com/file/d/1OBzOJ7GcXGkieXe8TIepwu7foCCJ7lXE/view?usp=sharing)
+- [Link to the video on Google Drive] (https://drive.google.com/file/d/1KVwtuiJpH1DTQhoCrrKbMiixmW3ijFY0/view?usp=sharing)

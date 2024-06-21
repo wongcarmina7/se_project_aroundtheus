@@ -11,12 +11,15 @@
 @media screen and (max-width: 621px) {
   .header {
     margin: 0;
-    padding: 0;
     max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .header__image {
     padding-top: 0;
     padding-bottom: 32px;
+    height: 24px;
+    width: 126px;
   }
 }
