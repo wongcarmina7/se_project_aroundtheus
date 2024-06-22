@@ -34,6 +34,7 @@
   margin-left: auto;
   border: 2px solid rgba(255, 255, 255, 1);
   background-size: 22px 22px;
+  border-radius: 2px;
 }
 
 .profile__add-button:hover {
@@ -107,17 +108,12 @@
   .profile__edit-button {
     width: 18px;
     height: 18px;
-    top: 280px;
-    left: 268px;
-    gap: 0px;
-    border: 1px 0px;
     margin-right: 0;
     background-size: 7.5px;
   }
 
   .profile__add-button {
     width: 282px;
-    border-radius: 2px;
     padding: 0;
     background-size: 16px;
   }
@@ -126,5 +122,9 @@
     font-size: 14px;
     line-height: 17px;
     max-width: 282px;
+  }
+
+  .profile__image {
+    margin-right: 0;
   }
 }

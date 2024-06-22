@@ -1,7 +1,7 @@
 .header {
   max-width: 880px;
   margin: 0 auto;
-  border-bottom: 1px solid rgba(84, 84, 84, 1);
+  border-bottom: 0.7px solid rgba(84, 84, 84, 1);
 }
 .header__image {
   padding-top: 45px;
@@ -10,9 +10,9 @@
 
 @media screen and (max-width: 621px) {
   .header {
-    margin: 0;
+    margin: 28px 0 0;
     max-width: 100%;
-    padding-left: 0;
+    padding-left: 27px;
     padding-right: 0;
   }
 

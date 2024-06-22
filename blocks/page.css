@@ -2,7 +2,7 @@
   background-color: black;
   color: white;
   font-family: Inter, Arial, Helvetica, sans-serif;
-  margin: 28px 20px 60px 20px;
+  margin: 0 20px 0 20px;
 }
 
 .page__content {
@@ -26,6 +26,11 @@
 } */
 
 @media screen and (max-width: 621px) {
+  .page {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .page__content {
     padding: 0;
   }
