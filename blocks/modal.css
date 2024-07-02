@@ -7,7 +7,8 @@
   right: 0;
   z-index: 999;
   padding: 0 19px;
-  display: flex;
+  display: none;
+  /* display: flex; */
 }
 
 .modal__opened {
@@ -91,6 +92,8 @@
   }
 
   .modal__close {
+    height: 26px;
+    width: 26px;
     bottom: calc(100% + 15px);
     left: calc(100% - 30px);
   }
