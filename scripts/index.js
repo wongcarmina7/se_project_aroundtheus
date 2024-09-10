@@ -60,11 +60,7 @@ const profileDescriptionInput = document.querySelector(
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
 }
-// function openProfileEditModal() {
-//   nameInput.value = profileTitle.textContent;
-//   jobInput.value = profileDescription.textContent;
-//   profileEditModal.classList.add("modal_opened");
-// }
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
 }
@@ -95,8 +91,13 @@ function handleProfileEditSubmit(e) {
 /* -------------------------------------------------------------------------- */
 /*                                  Event Listeners                                  */
 /* -------------------------------------------------------------------------- */
+profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+profileEditButton.addEventListener("click", () => {
+  openModal(profileEditModal);
+  profileTitleInput.value = profileTitle.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
+});
 
-profileEditButton.addEventListener("click", () => openModal(profileEditModal));
 profileModalCloseButton.addEventListener("click", () =>
   closeModal(profileEditModal)
 );
