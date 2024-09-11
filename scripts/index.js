@@ -32,14 +32,14 @@ const initialCards = [
 const profileEditModal = document.querySelector("#edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
 const profileTitleInput = document.querySelector("#profile-title-input");
-
+const addCardFormElement = addCardModal.querySelector(".modal__form");
 /* -------------------------------------------------------------------------- */
 /*                                  Buttons & Dom Nodes                                  */
 /* -------------------------------------------------------------------------- */
 const profileEditButton = document.querySelector("#profile-edit-button");
 const addNewCardButton = document.querySelector(".profile__add-button");
 const profileTitle = document.querySelector(".profile__title");
-const cardListEl = document.querySelector(".cards__list");
+const cardsWrap = document.querySelector(".cards__list");
 const profileModalCloseButton = profileEditModal.querySelector("#modal-close");
 const addCardModalCloseButton = addCardModal.querySelector("#modal-close");
 const profileDescription = document.querySelector(".profile__description");
@@ -53,7 +53,10 @@ const profileEditForm = profileEditModal.querySelector(".modal__form");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-
+const cardTitleInput = addCardFormElement.querySelector(
+  ".modal__input_type_title"
+);
+const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                  */
 /* -------------------------------------------------------------------------- */
@@ -74,7 +77,7 @@ function getCardElement(cardData) {
     likeButton.classList.toggle("card__like-button_active");
   });
 
-  //find delete button
+  //find delete button- get image from figma add it with postion absolute
   //add event listener to delete button(call html.remove) same process as like button active
   //add click listener to card image along with open modal(previewImageModal-add it to html)
 
@@ -83,6 +86,11 @@ function getCardElement(cardData) {
   cardTitleEl.textContent = cardData.name;
 
   return cardElement;
+}
+
+function renderCard(cardData, wrapper) {
+  const cardElement = getCardElement(cardData);
+  wrapper.prepend(cardElement);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -95,10 +103,20 @@ function handleProfileEditSubmit(e) {
   closeModal();
 }
 
+function handleAddCardFormSubmit(event) {
+  event.preventDefault();
+  const name = cardTitleInput.value;
+  const link = cardUrlInput.value;
+  cardElement = getCardElement;
+  renderCard({ name, link }, cardsWrap);
+  closeModal(addCardModal);
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                  Event Listeners                                  */
 /* -------------------------------------------------------------------------- */
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 profileEditButton.addEventListener("click", () => {
   openModal(profileEditModal);
   profileTitleInput.value = profileTitle.textContent;
@@ -110,10 +128,7 @@ profileModalCloseButton.addEventListener("click", () =>
 );
 profileEditModal.addEventListener("submit", handleProfileEditSubmit);
 
-initialCards.forEach((cardData) => {
-  const cardElement = getCardElement(cardData);
-  cardListEl.prepend(cardElement);
-});
+initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 
 //add new card
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));
