@@ -33,6 +33,7 @@ const profileEditModal = document.querySelector("#edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
+const previewImageModal = document.querySelector(".modal_type_preview");
 /* -------------------------------------------------------------------------- */
 /*                                  Buttons & Dom Nodes                                  */
 /* -------------------------------------------------------------------------- */
@@ -68,22 +69,35 @@ function openModal(modal) {
   modal.classList.add("modal_opened");
 }
 
+//find delete button- get image from figma add it with postion absolute
+//add event listener to delete button(call html.remove) same process as like button active
+//add click listener to card image along with open modal(previewImageModal-add it to html)
+
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
+
+  //Attach events
   const likeButton = cardElement.querySelector(".card__like-button");
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
   });
 
-  //find delete button- get image from figma add it with postion absolute
-  //add event listener to delete button(call html.remove) same process as like button active
-  //add click listener to card image along with open modal(previewImageModal-add it to html)
-
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
+
+  cardImageEl.addEventListener("click", (event) => {
+    // Get the source of the clicked image
+    const imgSrc = event.target.src;
+
+    // Update the modal image's src attribute
+    document.getElementById("modal__image_preview").src = imgSrc;
+
+    // Open the modal by adding the class that makes it visible
+    showPreview(previewImageModal);
+  });
 
   return cardElement;
 }
@@ -91,6 +105,11 @@ function getCardElement(cardData) {
 function renderCard(cardData, wrapper) {
   const cardElement = getCardElement(cardData);
   wrapper.prepend(cardElement);
+}
+
+function showPreview() {
+  const previewModal = document.querySelector(".modal_type_preview");
+  previewModal.classList.add("modal_opened");
 }
 
 /* -------------------------------------------------------------------------- */
