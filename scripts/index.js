@@ -33,8 +33,8 @@ const profileEditModal = document.querySelector("#edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
-// const previewImageModal = document.getElementById("modal-preview");
-const previewImageModal = document.querySelector(".modal_type_preview");
+const previewImageModal = document.querySelector("#modal-preview");
+
 /* -------------------------------------------------------------------------- */
 /*                                  Buttons & Dom Nodes                                  */
 /* -------------------------------------------------------------------------- */
@@ -45,10 +45,12 @@ const cardsWrap = document.querySelector(".cards__list");
 const profileModalCloseButton = profileEditModal.querySelector("#modal-close");
 const addCardModalCloseButton = addCardModal.querySelector("#modal-close");
 const profileDescription = document.querySelector(".profile__description");
-const previewModalCloseButton = previewImageModal.querySelector("#modal-close");
+const previewModalCloseButton =
+  previewImageModal.querySelector(".modal__close");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
-
+const imagePreviewTitle = previewImageModal.querySelector(".modal__title");
+const previewImage = previewImageModal.querySelector(".modal__image");
 /* -------------------------------------------------------------------------- */
 /*                                  Form Data                                  */
 /* -------------------------------------------------------------------------- */
@@ -71,10 +73,6 @@ function openModal(modal) {
   modal.classList.add("modal_opened");
 }
 
-//find delete button- get image from figma add it with postion absolute
-//add event listener to delete button(call html.remove) same process as like button active
-//add click listener to card image along with open modal(previewImageModal-add it to html)
-
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
@@ -86,16 +84,21 @@ function getCardElement(cardData) {
     likeButton.classList.toggle("card__like-button_active");
   });
 
+  const trashButton = cardElement.querySelector(".card__trash-button");
+  trashButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
 
   cardImageEl.addEventListener("click", (event) => {
     // Get the source of the clicked image
-    const imgSrc = event.target.src;
 
-    // Update the modal image's src attribute
-    document.getElementById("modal__image_preview").src = imgSrc;
+    previewImage.src = cardData.link;
+    previewImage.alt = cardData.name;
+    imagePreviewTitle.textContent = cardData.name;
 
     // Open the modal by adding the class that makes it visible
     showPreview(previewImageModal);
@@ -112,7 +115,6 @@ function renderCard(cardData, wrapper) {
 function showPreview() {
   const previewModal = document.querySelector("#modal-preview");
   openModal(previewModal);
-  //previewModal.classList.add("modal_opened");
 }
 
 /* -------------------------------------------------------------------------- */
@@ -158,6 +160,10 @@ addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
 
-// previewModalCloseButton.addEventListener("click", (event) =>
-//   closeModal(previewImageModal)
-// );
+// closeModal.addEventListener("click", () => {
+//   previewImageModal.remove;
+// });
+
+previewModalCloseButton.addEventListener("click", () => {
+  closeModal(previewImageModal);
+});

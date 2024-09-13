@@ -9,7 +9,7 @@
 
 **Intro**
 
-This project is a way of displaying images of various travel destinations across the United States. It is responsive to fit different screen sizes.
+This project is a way of displaying images of various travel destinations across the United States. It is responsive to fit different screen sizes. This webpage has the ability to edit profile, also add and delete cards. The like button is fully functional as well.
 **Figma**
 
 - [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
