@@ -94,7 +94,7 @@
   margin-top: 18px;
 }
 
-.modal_type_preview {
+.modal__image_type_preview {
   margin: auto;
   max-height: 75vh;
   max-width: 75vw;
@@ -139,5 +139,10 @@
 
   .modal__button {
     width: 238px;
+  }
+
+  .modal__heading {
+    font-size: 18px;
+    line-height: 21.78px;
   }
 }

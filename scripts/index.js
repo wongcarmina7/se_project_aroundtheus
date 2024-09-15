@@ -113,8 +113,7 @@ function renderCard(cardData, wrapper) {
 }
 
 function showPreview() {
-  const previewModal = document.querySelector("#modal-preview");
-  openModal(previewModal);
+  openModal(previewImageModal);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -131,9 +130,11 @@ function handleAddCardFormSubmit(event) {
   event.preventDefault();
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
-  cardElement = getCardElement;
   renderCard({ name, link }, cardsWrap);
   closeModal(addCardModal);
+
+  cardTitleInput.value = "";
+  cardUrlInput.value = "";
 }
 
 /* -------------------------------------------------------------------------- */
@@ -150,7 +151,6 @@ profileEditButton.addEventListener("click", () => {
 profileModalCloseButton.addEventListener("click", () =>
   closeModal(profileEditModal)
 );
-profileEditModal.addEventListener("submit", handleProfileEditSubmit);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 
