@@ -146,3 +146,11 @@
     line-height: 21.78px;
   }
 }
+
+.modal__error {
+  color: red;
+}
+
+.modal__button_disabled {
+  color: white;
+}
