@@ -34,6 +34,7 @@ const addCardModal = document.querySelector("#add-card-modal");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 const previewImageModal = document.querySelector("#modal-preview");
+const overlayElement = document.querySelector(".modal__overlay");
 
 /* -------------------------------------------------------------------------- */
 /*                                  Buttons & Dom Nodes                                  */
@@ -67,10 +68,29 @@ const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
 /* -------------------------------------------------------------------------- */
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  modal.removeEventListener("click", handleOverlayClick);
+  document.removeEventListener("keydown", handleOverlayEsc);
 }
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  modal.addEventListener("click", handleOverlayClick);
+  document.addEventListener("keydown", handleOverlayEsc);
+}
+
+function handleOverlayClick(event) {
+  if (event.target.classList.contains("modal")) {
+    closeModal(event.target);
+  }
+}
+
+function handleOverlayEsc(event) {
+  if (event.key === "Escape") {
+    const openModal = document.querySelector(".modal_opened");
+    if (openModal) {
+      closeModal(openModal);
+    }
+  }
 }
 
 function getCardElement(cardData) {
@@ -159,10 +179,6 @@ addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
-
-// closeModal.addEventListener("click", () => {
-//   previewImageModal.remove;
-// });
 
 previewModalCloseButton.addEventListener("click", () => {
   closeModal(previewImageModal);
