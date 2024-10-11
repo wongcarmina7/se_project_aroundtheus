@@ -34,7 +34,6 @@ const addCardModal = document.querySelector("#add-card-modal");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 const previewImageModal = document.querySelector("#modal-preview");
-const overlayElement = document.querySelector(".modal__overlay");
 
 /* -------------------------------------------------------------------------- */
 /*                                  Buttons & Dom Nodes                                  */
