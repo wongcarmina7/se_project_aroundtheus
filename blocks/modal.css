@@ -25,6 +25,7 @@
   margin: auto;
   padding: 36px;
   border-radius: 10px;
+  position: relative;
 }
 
 .modal__close {
@@ -158,8 +159,8 @@
 
 .modal__input_type_error {
   border-bottom: 1px solid red;
-  color: red;
   position: relative;
+  bottom: 5px;
 }
 
 .modal__error {
@@ -171,6 +172,7 @@
   position: absolute;
   width: 358px;
   height: 17px;
+  bottom: 0px;
 }
 
 .modal__button_disabled {
