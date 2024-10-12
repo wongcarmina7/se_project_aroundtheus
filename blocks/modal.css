@@ -155,6 +155,11 @@
     font-size: 18px;
     line-height: 21.78px;
   }
+
+  .modal__input {
+    width: 238px;
+    height: 26px;
+  }
 }
 
 .modal__input_type_error {
@@ -173,6 +178,8 @@
   width: 358px;
   height: 17px;
   bottom: 0px;
+  max-width: 100%;
+  left: 0;
 }
 
 .modal__button_disabled {
