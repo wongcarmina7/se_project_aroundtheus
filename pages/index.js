@@ -1,5 +1,7 @@
 import Card from "../components/Card.js";
 
+import FormValidator from "../components/FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -32,7 +34,8 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
 
-const card = new Card(cardData);
+const card = new Card(cardData, "#card-template");
+card.getView();
 
 /* -------------------------------------------------------------------------- */
 /*                                  Elements                                  */
@@ -43,6 +46,8 @@ const addCardModal = document.querySelector("#add-card-modal");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 const previewImageModal = document.querySelector("#modal-preview");
+const editForm = document.querySelector("#edit-profile-form");
+const addForm = document.querySelector("#add-card-form");
 
 /* -------------------------------------------------------------------------- */
 /*                                  Buttons & Dom Nodes                                  */
@@ -102,11 +107,15 @@ function handleOverlayEsc(event) {
 }
 
 function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
+  const cardTemplate = document.querySelector("#card-template").content;
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
 
-  //Attach events
+  cardImageEl.src = cardData.image;
+  cardTitleEl.textContent = cardData.title;
+
+  // Attach events
   const likeButton = cardElement.querySelector(".card__like-button");
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
@@ -121,15 +130,13 @@ function getCardElement(cardData) {
   cardImageEl.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
 
-  cardImageEl.addEventListener("click", (event) => {
-    // Get the source of the clicked image
-
-    previewImage.src = cardData.link;
-    previewImage.alt = cardData.name;
-    imagePreviewTitle.textContent = cardData.name;
-
-    // Open the modal by adding the class that makes it visible
-    showPreview(previewImageModal);
+  cardImageEl.addEventListener("click", () => {
+    updateImagePreview(
+      cardData,
+      previewImage,
+      imagePreviewTitle,
+      previewImageModal
+    );
   });
 
   return cardElement;
@@ -140,7 +147,20 @@ function renderCard(cardData, wrapper) {
   wrapper.prepend(cardElement);
 }
 
-function showPreview() {
+function updateImagePreview(
+  cardData,
+  previewImage,
+  imagePreviewTitle,
+  previewImageModal
+) {
+  previewImage.src = cardData.link;
+  previewImage.alt = cardData.name;
+  imagePreviewTitle.textContent = cardData.name;
+
+  showPreview(previewImageModal);
+}
+
+function showPreview(previewImageModal) {
   openModal(previewImageModal);
 }
 
@@ -182,7 +202,6 @@ profileModalCloseButton.addEventListener("click", () =>
 
 initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 
-//add new card
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
@@ -190,4 +209,24 @@ addCardModalCloseButton.addEventListener("click", () =>
 
 previewModalCloseButton.addEventListener("click", () => {
   closeModal(previewImageModal);
+});
+
+//Validation
+
+const validationSettings = {
+  inputSelector: ".modal__input",
+  buttonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const editFormValidator = new FormValidator({
+  settings: validationSettings,
+  formElement: editForm,
+});
+
+const addFormValidator = new FormValidator({
+  settings: validationSettings,
+  formElement: addForm,
 });
