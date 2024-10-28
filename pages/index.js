@@ -226,7 +226,11 @@ const editFormValidator = new FormValidator({
   formElement: editForm,
 });
 
+editFormValidator.enableValidation();
+
 const addFormValidator = new FormValidator({
   settings: validationSettings,
   formElement: addForm,
 });
+
+addFormValidator.enableValidation();
