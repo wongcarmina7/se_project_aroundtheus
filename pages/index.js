@@ -106,45 +106,49 @@ function handleOverlayEsc(event) {
   }
 }
 
-function getCardElement(cardData) {
-  const cardTemplate = document.querySelector("#card-template").content;
-  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEl = cardElement.querySelector(".card__title");
-
-  cardImageEl.src = cardData.image;
-  cardTitleEl.textContent = cardData.title;
-
-  // Attach events
-  const likeButton = cardElement.querySelector(".card__like-button");
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
-
-  const trashButton = cardElement.querySelector(".card__trash-button");
-  trashButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = cardData.name;
-  cardTitleEl.textContent = cardData.name;
-
-  cardImageEl.addEventListener("click", () => {
-    updateImagePreview(
-      cardData,
-      previewImage,
-      imagePreviewTitle,
-      previewImageModal
-    );
-  });
-
-  return cardElement;
+function createCard(data) {
+  return new Card(data, "#card-template").getView();
 }
 
+// function Card(cardData) {
+//   const cardTemplate = document.querySelector("#card-template").content;
+//   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+//   const cardImageEl = cardElement.querySelector(".card__image");
+//   const cardTitleEl = cardElement.querySelector(".card__title");
+
+//   cardImageEl.src = cardData.image;
+//   cardTitleEl.textContent = cardData.title;
+
+//   // Attach events
+//   const likeButton = cardElement.querySelector(".card__like-button");
+//   likeButton.addEventListener("click", () => {
+//     likeButton.classList.toggle("card__like-button_active");
+//   });
+
+//   const trashButton = cardElement.querySelector(".card__trash-button");
+//   trashButton.addEventListener("click", () => {
+//     cardElement.remove();
+//   });
+
+//   cardImageEl.src = cardData.link;
+//   cardImageEl.alt = cardData.name;
+//   cardTitleEl.textContent = cardData.name;
+
+//   cardImageEl.addEventListener("click", () => {
+//     updateImagePreview(
+//       cardData,
+//       previewImage,
+//       imagePreviewTitle,
+//       previewImageModal
+//     );
+//   });
+
+//   return cardElement;
+// }
+
 function renderCard(cardData, wrapper) {
-  const cardElement = getCardElement(cardData);
-  wrapper.prepend(cardElement);
+  const card = createCard(cardData);
+  wrapper.prepend(card);
 }
 
 function updateImagePreview(
@@ -176,13 +180,13 @@ function handleProfileEditSubmit(e) {
 
 function handleAddCardFormSubmit(event) {
   event.preventDefault();
-  const name = cardTitleInput.value;
-  const link = cardUrlInput.value;
-  renderCard({ name, link }, cardsWrap);
+  renderCard(
+    { name: cardTitleInput.value, link: cardUrlInput.value },
+    cardsWrap
+  );
   closeModal(addCardModal);
 
-  cardTitleInput.value = "";
-  cardUrlInput.value = "";
+  addCardFormElement.reset();
 }
 
 /* -------------------------------------------------------------------------- */

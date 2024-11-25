@@ -149,6 +149,7 @@
 
   .modal__button {
     width: 238px;
+    font-size: 14px;
   }
 
   .modal__heading {
