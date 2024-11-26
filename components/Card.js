@@ -1,8 +1,8 @@
 export default class Card {
-  constructor({ name, link }, cardSelector, handleImageClick) {
+  constructor({ name, link }, cardTemplate, handleImageClick) {
     this._name = name;
     this._link = link;
-    this._cardSelector = cardSelector;
+    this._card = cardTemplate;
     this._handleImageClick = handleImageClick;
     this._cardElement = null;
   }
@@ -30,9 +30,11 @@ export default class Card {
       .classList.toggle("card__like-button_active");
   }
 
-  getView() {
+  getView(e) {
+    // e.preventDefault();
+    console.log(this._card);
     this._cardElement = document
-      .querySelector(this._cardSelector)
+      .querySelector(this._card)
       .content.querySelector(".card")
       .cloneNode(true);
 

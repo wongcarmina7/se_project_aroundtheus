@@ -65,6 +65,7 @@ const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 const imagePreviewTitle = previewImageModal.querySelector(".modal__title");
 const previewImage = previewImageModal.querySelector(".modal__image");
+
 /* -------------------------------------------------------------------------- */
 /*                                  Form Data                                  */
 /* -------------------------------------------------------------------------- */
@@ -106,8 +107,16 @@ function handleOverlayEsc(event) {
   }
 }
 
+const handleImageClick = (data) => {
+  console.log(data);
+  previewImage.src = data._link;
+  previewImage.alt = data._name;
+  imagePreviewTitle.textContent = data._name;
+  openModal(previewImageModal);
+};
+
 function createCard(data) {
-  return new Card(data, "#card-template").getView();
+  return new Card(data, "#card-template", handleImageClick).getView();
 }
 
 // function Card(cardData) {
