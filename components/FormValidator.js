@@ -1,5 +1,3 @@
-import Card from "./Card.js";
-
 class FormValidator {
   constructor({ settings, formElement }) {
     this._formElement = formElement;
@@ -92,16 +90,5 @@ const settings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-
-// const editForm = document.querySelector(".edit-modal");
-// const addForm = document.querySelector(".add-card-modal");
-// const card = new Card(cardData, "#card-template", handleImageClick);
-// const cardElement = card.getView();
-
-// const editFormValidator = new FormValidator({
-//   settings,
-//   formElement: editForm,
-// });
-// const addFormValidator = new FormValidator({ settings, formElement: addForm });
 
 export default FormValidator;

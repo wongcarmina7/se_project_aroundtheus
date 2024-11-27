@@ -34,9 +34,6 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
 
-const card = new Card(cardData, "#card-template");
-card.getView();
-
 /* -------------------------------------------------------------------------- */
 /*                                  Elements                                  */
 /* -------------------------------------------------------------------------- */
@@ -119,42 +116,6 @@ function createCard(data) {
   return new Card(data, "#card-template", handleImageClick).getView();
 }
 
-// function Card(cardData) {
-//   const cardTemplate = document.querySelector("#card-template").content;
-//   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-//   const cardImageEl = cardElement.querySelector(".card__image");
-//   const cardTitleEl = cardElement.querySelector(".card__title");
-
-//   cardImageEl.src = cardData.image;
-//   cardTitleEl.textContent = cardData.title;
-
-//   // Attach events
-//   const likeButton = cardElement.querySelector(".card__like-button");
-//   likeButton.addEventListener("click", () => {
-//     likeButton.classList.toggle("card__like-button_active");
-//   });
-
-//   const trashButton = cardElement.querySelector(".card__trash-button");
-//   trashButton.addEventListener("click", () => {
-//     cardElement.remove();
-//   });
-
-//   cardImageEl.src = cardData.link;
-//   cardImageEl.alt = cardData.name;
-//   cardTitleEl.textContent = cardData.name;
-
-//   cardImageEl.addEventListener("click", () => {
-//     updateImagePreview(
-//       cardData,
-//       previewImage,
-//       imagePreviewTitle,
-//       previewImageModal
-//     );
-//   });
-
-//   return cardElement;
-// }
-
 function renderCard(cardData, wrapper) {
   const card = createCard(cardData);
   wrapper.prepend(card);
@@ -196,6 +157,8 @@ function handleAddCardFormSubmit(event) {
   closeModal(addCardModal);
 
   addCardFormElement.reset();
+
+  addFormValidator.disableSubmitButton();
 }
 
 /* -------------------------------------------------------------------------- */
