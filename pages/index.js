@@ -43,8 +43,6 @@ const addCardModal = document.querySelector("#add-card-modal");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 const previewImageModal = document.querySelector("#modal-preview");
-const editForm = document.querySelector("#edit-profile-form");
-const addForm = document.querySelector("#add-card-form");
 
 /* -------------------------------------------------------------------------- */
 /*                                  Buttons & Dom Nodes                                  */
@@ -87,6 +85,8 @@ function openModal(modal) {
   modal.classList.add("modal_opened");
   modal.addEventListener("click", handleOverlayClick);
   document.addEventListener("keydown", handleOverlayEsc);
+
+  formValidator.resetValidation();
 }
 
 function handleOverlayClick(event) {
@@ -195,18 +195,19 @@ const validationSettings = {
   inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
+  formSelector: ".modal__form",
 };
 
 const editFormValidator = new FormValidator({
   settings: validationSettings,
-  formElement: editForm,
+  formElement: profileEditForm,
 });
 
 editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator({
   settings: validationSettings,
-  formElement: addForm,
+  formElement: addCardFormElement,
 });
 
 addFormValidator.enableValidation();
