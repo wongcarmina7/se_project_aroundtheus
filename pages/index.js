@@ -85,8 +85,6 @@ function openModal(modal) {
   modal.classList.add("modal_opened");
   modal.addEventListener("click", handleOverlayClick);
   document.addEventListener("keydown", handleOverlayEsc);
-
-  formValidator.resetValidation();
 }
 
 function handleOverlayClick(event) {
@@ -106,9 +104,9 @@ function handleOverlayEsc(event) {
 
 const handleImageClick = (data) => {
   console.log(data);
-  previewImage.src = data._link;
-  previewImage.alt = data._name;
-  imagePreviewTitle.textContent = data._name;
+  previewImage.src = data.link;
+  previewImage.alt = data.name;
+  imagePreviewTitle.textContent = data.name;
   openModal(previewImageModal);
 };
 
@@ -170,6 +168,7 @@ profileEditButton.addEventListener("click", () => {
   openModal(profileEditModal);
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
+  editFormValidator.resetValidation();
 });
 
 profileModalCloseButton.addEventListener("click", () =>
